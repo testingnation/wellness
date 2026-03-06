@@ -13,15 +13,27 @@ body {
     line-height: 1.6;
 }
 
-/* Hero Section (placeholder) */
+/* Hero Section with Banner */
 .hero {
     position: relative;
-    height: 400px;
-    background: #2e8b57; /* calming green placeholder */
+    height: 400px; /* adjust as needed */
+    background: url('../images/banner.jpg') no-repeat center center/cover;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Overlay navigation on banner */
+.hero nav {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: rgba(46,139,87, 0.7); /* semi-transparent overlay */
+    padding: 10px 0;
+    z-index: 10;
 }
 
 /* Navigation */
