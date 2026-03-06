@@ -1,81 +1,63 @@
-/* Basic Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Body Styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background: #f0f8ff; /* soft calming blue */
-    color: #333;
-    line-height: 1.6;
+/* Hero Section with Banner */
+.hero {
+    position: relative;
+    height: 400px; /* adjust banner height */
+    background: url('../images/banner.jpg') no-repeat center center/cover;
+    color: #fff;
 }
 
-/* Navigation */
-nav {
-    background: #2e8b57; /* calming green */
-    padding: 1em;
+/* Overlay navigation on banner */
+.hero nav {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: rgba(46,139,87, 0.7); /* semi-transparent overlay */
+    padding: 10px 0;
+    z-index: 10;
 }
-nav ul {
+.hero nav ul {
     display: flex;
-    list-style: none;
     justify-content: center;
+    flex-wrap: wrap;
 }
-nav ul li {
-    margin: 0 15px;
+.hero nav ul li {
+    margin: 0 12px;
 }
-nav ul li a {
-    text-decoration: none;
+.hero nav ul li a {
     color: #fff;
     font-weight: bold;
+    text-decoration: none;
 }
-nav ul li a:hover {
+.hero nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 100px 20px;
-    background: url('../images/placeholder.jpg') no-repeat center center/cover;
-    color: #fff;
-}
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-}
-.hero p {
-    font-size: 1.2em;
-}
-
-/* Cards Section */
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 50px 20px;
-    gap: 20px;
-}
-.card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1 1 200px;
-    max-width: 250px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* Hero text content centered */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
-.card h3 { margin-bottom: 10px; }
-.card p { font-size: 0.9em; }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    background: #2e8b57;
-    color: #fff;
-    margin-top: 50px;
-}
-
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .cards { flex-direction: column; align-items: center; }
+    .hero {
+        height: 300px;
+    }
+    .hero nav ul {
+        flex-direction: column;
+    }
+    .hero nav ul li {
+        margin: 5px 0;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
 }
