@@ -8,12 +8,30 @@
   box-sizing: border-box;
 }
 
-/* BODY */
+/* GLOBAL */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  background: #f4f8fb;
+  background: linear-gradient(to bottom, #f4f8fb, #eef4f9);
   color: #333;
   line-height: 1.6;
+}
+
+/* GLOBAL SPACING */
+section {
+  padding: 70px 20px;
+}
+
+h1, h2, h3 {
+  letter-spacing: 0.3px;
+}
+
+p {
+  max-width: 700px;
+  margin: auto;
 }
 
 /* HERO / VIDEO BANNER */
@@ -48,7 +66,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0,0,0,0.35);
   z-index: -1;
 }
 
@@ -92,17 +110,20 @@ nav a:hover {
   z-index: 2;
   text-align: center;
   color: white;
+  padding: 0 20px;
 }
 
 .hero-content h1 {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
 }
 
 .hero-content p {
   font-size: 18px;
   font-weight: 300;
+  opacity: 0.95;
 }
 
 /* SITE NOTICE / UNDER CONSTRUCTION */
@@ -133,17 +154,17 @@ nav a:hover {
 
 .card {
   background: white;
-  padding: 25px;
-  width: 230px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+  width: 240px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
   text-align: center;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
 }
 
 .card h3 {
@@ -168,7 +189,11 @@ footer {
   }
 
   .hero-content h1 {
-    font-size: 28px;
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
   }
 
   nav ul {
