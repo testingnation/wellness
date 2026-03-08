@@ -1,4 +1,4 @@
-/* IMPORT FONT (APTOS-LIKE) */
+/* IMPORT FONT */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* RESET */
@@ -8,7 +8,6 @@
   box-sizing: border-box;
 }
 
-/* GLOBAL */
 html {
   scroll-behavior: smooth;
 }
@@ -34,7 +33,7 @@ p {
   margin: auto;
 }
 
-/* HERO / VIDEO BANNER */
+/* HERO */
 .hero {
   position: relative;
   height: 420px;
@@ -44,7 +43,6 @@ p {
   justify-content: center;
 }
 
-/* Video Background */
 .hero-video {
   position: absolute;
   top: 50%;
@@ -58,7 +56,6 @@ p {
   z-index: -2;
 }
 
-/* Dark Overlay */
 .hero::after {
   content: "";
   position: absolute;
@@ -67,17 +64,16 @@ p {
   z-index: -1;
 }
 
-/* NAVIGATION BAR */
+/* NAVIGATION */
 nav {
+  width: 100%;
   position: absolute;
   top: 0;
-  width: 100%;
+  z-index: 10;
   background: rgba(20, 90, 160, 0.9);
   backdrop-filter: blur(6px);
-  z-index: 10;
 }
 
-/* NAV CONTAINER */
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -87,14 +83,12 @@ nav {
   height: 60px;
 }
 
-/* LOGO */
 .logo {
   color: white;
   font-weight: 500;
   font-size: 18px;
 }
 
-/* MENU LIST */
 #menu {
   display: flex;
   list-style: none;
@@ -112,14 +106,12 @@ nav {
   opacity: 0.8;
 }
 
-/* HAMBURGER ICON */
 .menu-toggle {
   display: none;
   font-size: 28px;
   color: white;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.3s ease;
 }
 
 /* HERO TEXT */
@@ -205,36 +197,32 @@ footer {
 
 /* MOBILE NAVIGATION */
 @media (max-width: 768px) {
-  /* Show hamburger */
   .menu-toggle {
     display: block;
   }
 
-  /* Hide menu by default using scaleY for smooth animation */
   #menu {
+    flex-direction: column;
     position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
     background: rgba(20, 90, 160, 0.95);
-    flex-direction: column;
-    align-items: center;
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.3s ease;
     overflow: hidden;
+    z-index: 9;
   }
 
   #menu li {
     margin: 16px 0;
   }
 
-  /* Show menu when active */
   #menu.active {
     transform: scaleY(1);
   }
 
-  /* Stack cards vertically */
   .cards {
     flex-direction: column;
     align-items: center;
