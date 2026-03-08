@@ -70,38 +70,60 @@ p {
   z-index: -1;
 }
 
-/* NAVIGATION */
-nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: rgba(20, 90, 160, 0.9);
-  padding: 14px 0;
-  z-index: 2;
-  backdrop-filter: blur(6px);
-}
-
-nav ul {
+/* NAV CONTAINER */
+.nav-container {
   display: flex;
-  justify-content: center;
-  list-style: none;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
 }
 
-nav li {
-  margin: 0 18px;
-}
-
-nav a {
+/* LOGO */
+.logo {
   color: white;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0.4px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* HAMBURGER ICON */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+/* DESKTOP MENU */
+#menu {
+  display: flex;
+}
+
+/* MOBILE MENU */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  #menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    background: rgba(20, 90, 160, 0.95);
+    text-align: center;
+  }
+
+  #menu.active {
+    display: flex;
+  }
+
+  #menu li {
+    margin: 15px 0;
+  }
+
 }
 
 /* HERO TEXT */
