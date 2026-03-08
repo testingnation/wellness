@@ -2,103 +2,103 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TestingNation Wellness</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestingNation Wellness</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- HERO / VIDEO BANNER -->
-<section class="hero">
+  <!-- HERO / VIDEO BANNER -->
+  <section class="hero">
 
-  <!-- Background Video -->
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="video/banner.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="video/banner.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-container">
+    <!-- NAVIGATION -->
+    <nav>
+      <div class="nav-container">
 
-      <!-- Logo / Site Name -->
-      <div class="logo">
-        TestingNation Wellness
+        <!-- Logo / Site Name -->
+        <div class="logo">
+          TestingNation Wellness
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" id="menu-toggle">
+          ☰
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul id="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Journal</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Tools</a></li>
+          <li><a href="#">Connect</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+
       </div>
+    </nav>
 
-      <!-- Hamburger Icon -->
-      <div class="menu-toggle" id="menu-toggle">
-        ☰
-      </div>
-
-      <!-- Navigation Menu -->
-      <ul id="menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Journal</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Tools</a></li>
-        <li><a href="#">Connect</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-
+    <!-- HERO TEXT -->
+    <div class="hero-content">
+      <h1>Welcome to TestingNation Wellness</h1>
+      <p>Your on-demand mindfulness & wellbeing toolbox</p>
     </div>
-  </nav>
 
-  <!-- HERO TEXT -->
-  <div class="hero-content">
-    <h1>Welcome to TestingNation Wellness</h1>
-    <p>Your on-demand mindfulness & wellbeing toolbox</p>
-  </div>
+  </section>
 
-</section>
+  <!-- SITE NOTICE -->
+  <section class="construction">
+    <h2>🚧 Site Under Construction</h2>
+    <p>We are currently building the TestingNation Wellness platform.</p>
+    <p>Resources, tools, and journal features will be added soon.</p>
+    <p>Thank you for your patience while we complete the site.</p>
+  </section>
 
-<!-- SITE NOTICE -->
-<section class="construction">
-  <h2>🚧 Site Under Construction</h2>
-  <p>We are currently building the TestingNation Wellness platform.</p>
-  <p>Resources, tools, and journal features will be added soon.</p>
-  <p>Thank you for your patience while we complete the site.</p>
-</section>
+  <!-- FEATURE CARDS -->
+  <section class="cards">
+    <div class="card">
+      <h3>Resources</h3>
+      <p>Videos, exercises, and worksheets to support your growth</p>
+    </div>
+    <div class="card">
+      <h3>Journal</h3>
+      <p>Personal space to track your thoughts and reflections</p>
+    </div>
+    <div class="card">
+      <h3>Tools</h3>
+      <p>Interactive CBT & DBT exercises for daily use</p>
+    </div>
+    <div class="card">
+      <h3>Blog</h3>
+      <p>Articles, inspiration, and wellness insights</p>
+    </div>
+  </section>
 
-<!-- FEATURE CARDS -->
-<section class="cards">
-  <div class="card">
-    <h3>Resources</h3>
-    <p>Videos, exercises, and worksheets to support your growth</p>
-  </div>
-  <div class="card">
-    <h3>Journal</h3>
-    <p>Personal space to track your thoughts and reflections</p>
-  </div>
-  <div class="card">
-    <h3>Tools</h3>
-    <p>Interactive CBT & DBT exercises for daily use</p>
-  </div>
-  <div class="card">
-    <h3>Blog</h3>
-    <p>Articles, inspiration, and wellness insights</p>
-  </div>
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 TestingNation Wellness</p>
+  </footer>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 TestingNation Wellness</p>
-</footer>
+  <!-- MOBILE MENU SCRIPT -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
 
-<!-- MOBILE MENU SCRIPT -->
-<script>
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu");
-
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
-</script>
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+  </script>
 
 </body>
 </html>
