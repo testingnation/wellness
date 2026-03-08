@@ -80,13 +80,77 @@ nav {
 /* NAV CONTAINER */
 .nav-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* logo left, menu right */
   align-items: center;
   width: 92%;
   margin: auto;
   height: 60px;
 }
 
+/* MENU LIST */
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+#menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#menu a:hover {
+  opacity: 0.8;
+}
+
+/* HAMBURGER ICON */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+/* MOBILE NAVIGATION */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hide menu by default using scaleY for smooth open */
+  #menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 90, 160, 0.95);
+    flex-direction: column;
+    align-items: center;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  #menu li {
+    margin: 16px 0;
+  }
+
+  /* Menu when active */
+  #menu.active {
+    transform: scaleY(1);
+  }
+
+  /* Stack cards vertically */
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 /* LOGO */
 .logo {
   color: white;
