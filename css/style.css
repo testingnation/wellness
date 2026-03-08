@@ -78,12 +78,12 @@ nav {
 /* NAV CONTAINER */
 .nav-container {
   display: flex;
-  justify-content: space-between; /* logo left, menu right */
+  justify-content: space-between; 
   align-items: center;
   width: 92%;
   margin: auto;
   height: 60px;
-  position: relative; /* for absolute mobile menu */
+  position: relative;
 }
 
 /* LOGO */
@@ -118,7 +118,6 @@ nav {
   color: white;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.3s ease;
 }
 
 /* HERO TEXT */
@@ -204,7 +203,6 @@ footer {
 
 /* MOBILE NAVIGATION */
 @media (max-width: 768px) {
-  /* Show hamburger */
   .menu-toggle {
     display: block;
   }
@@ -226,11 +224,11 @@ footer {
 
   /* Menu items spacing */
   #menu li {
-    margin: 0;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding: 12px 0;
+    margin: 0;
   }
 
   /* Show menu when active */
