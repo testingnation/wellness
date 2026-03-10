@@ -91,6 +91,11 @@ cursor:pointer;
 color:white;
 font-size:30px;
 cursor:pointer;
+transition:transform .25s ease;
+}
+
+.menu-toggle:hover{
+transform:scale(1.15);
 }
 
 /* SIDE MENU */
