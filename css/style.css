@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* RESET */
+
 *{
 margin:0;
 padding:0;
@@ -14,6 +15,8 @@ background:linear-gradient(to bottom,#f4f8fb,#eef4f9);
 color:#333;
 line-height:1.6;
 }
+
+/* GLOBAL */
 
 section{
 padding:70px 20px;
@@ -72,33 +75,39 @@ align-items:center;
 /* HAMBURGER */
 
 .menu-toggle{
-font-size:28px;
+font-size:30px;
 color:white;
 cursor:pointer;
 user-select:none;
 }
 
-/* MENU */
+/* MENU (hidden by default) */
 
 #menu{
 position:absolute;
 top:60px;
 left:0;
 width:100%;
-background:rgba(20,90,160,0.95);
+background:rgba(20,90,160,0.96);
 list-style:none;
+
+display:flex;
 flex-direction:column;
 align-items:center;
-overflow:hidden;
+
 max-height:0;
+overflow:hidden;
+
 transition:max-height .4s ease;
 }
+
+/* MENU ITEMS */
 
 #menu li{
 width:100%;
 text-align:center;
-border-bottom:1px solid rgba(255,255,255,.1);
-padding:14px 0;
+padding:16px 0;
+border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 #menu a{
@@ -107,8 +116,10 @@ text-decoration:none;
 font-size:16px;
 }
 
+/* MENU OPEN */
+
 #menu.active{
-max-height:1000px;
+max-height:2000px;
 }
 
 /* HERO TEXT */
@@ -162,7 +173,7 @@ width:240px;
 border-radius:14px;
 box-shadow:0 8px 20px rgba(0,0,0,0.06);
 text-align:center;
-transition:all .25s ease;
+transition:.25s;
 }
 
 .card:hover{
@@ -180,7 +191,7 @@ text-align:center;
 padding:30px;
 }
 
-/* MOBILE HERO */
+/* RESPONSIVE HERO */
 
 @media (max-width:900px){
 
