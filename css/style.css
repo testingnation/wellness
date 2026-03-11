@@ -244,8 +244,9 @@ box-shadow:0 12px 30px rgba(0,0,0,.12);
 
 .cards a.card {
   text-decoration: none; /* Remove underline */
-  color: inherit; /* Keep text color */
-  display: block; /* Makes the whole card clickable */
+  color: inherit;        /* Keep text color same as normal card */
+  display: block;        /* Makes the whole card clickable */
+  cursor: pointer;       /* Optional: shows hand on hover */
 }
 
 /* FOOTER */
