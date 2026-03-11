@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | TestingNation Wellness</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<video autoplay muted loop playsinline class="hero-video">
+<source src="video/banner.mp4" type="video/mp4">
+</video>
+
+<nav>
+
+<div class="nav-container">
+
+<a href="index.html" class="home-icon">⌂</a>
+
+<div class="menu-toggle" id="menu-toggle">☰</div>
+
+</div>
+
+</nav>
+
+<div class="hero-content">
+
+<h1>About TestingNation Wellness</h1>
+<p>Supporting mindfulness, reflection, and personal growth</p>
+
+</div>
+
+</section>
+
+<div id="menu">
+
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="#">Journal</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Tools</a></li>
+<li><a href="#">Connect</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+
+</div>
+
+<section class="resources">
+
+<h2>Our Mission</h2>
+
+<p>
+TestingNation Wellness was created to provide accessible tools for mindfulness, reflection, and personal wellbeing.
+</p>
+
+<p>
+The platform brings together practical exercises, educational resources, and guided reflection tools designed to support individuals in building awareness, resilience, and emotional balance.
+</p>
+
+<p>
+The project combines research-informed mindfulness practices with structured reflection and journaling methods to help individuals better understand their thoughts, emotions, and experiences.
+</p>
+
+<p>
+TestingNation Wellness is intended to serve as an evolving platform where individuals can explore wellbeing resources, practice mindfulness techniques, and develop sustainable habits that support long-term mental and emotional health.
+</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 TestingNation Wellness</p>
+
+</footer>
+
+<script>
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+toggle.addEventListener("click", () => {
+
+menu.classList.toggle("active");
+
+if(menu.classList.contains("active")){
+toggle.innerHTML = "✕";
+}else{
+toggle.innerHTML = "☰";
+}
+
+});
+
+</script>
+
+</body>
+</html>
