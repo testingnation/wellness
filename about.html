@@ -1,107 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>About | TestingNation Wellness</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | TestingNation Wellness</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<section class="hero">
+  <!-- HERO -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="video/banner.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-<video autoplay muted loop playsinline class="hero-video">
-<source src="video/banner.mp4" type="video/mp4">
-</video>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="home-icon">⌂</a>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+      </div>
+    </nav>
 
-<nav>
+    <div class="hero-content">
+      <h1>About TestingNation Wellness</h1>
+      <p>Learn more about our mission, vision, and values</p>
+    </div>
+  </section>
 
-<div class="nav-container">
+  <!-- SIDE MENU -->
+  <div id="menu">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Tools</a></li>
+      <li><a href="#">Connect</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+  </div>
 
-<a href="index.html" class="home-icon">⌂</a>
+  <!-- ABOUT CONTENT -->
+  <section class="cards" style="justify-content:center; padding:60px 20px;">
+    
+    <!-- MISSION -->
+    <div class="card">
+      <h3>Mission</h3>
+      <p>TestingNation Wellness provides an accessible, self-paced platform that empowers individuals to improve their mental and emotional wellbeing through research-informed tools and guided reflection.</p>
+    </div>
 
-<div class="menu-toggle" id="menu-toggle">☰</div>
+    <!-- VISION -->
+    <div class="card">
+      <h3>Vision</h3>
+      <p>To become a global catalyst for sustainable mental health, where evidence-based wellness tools are a free and fundamental resource for every individual's journey toward resilience.</p>
+    </div>
 
-</div>
+    <!-- VALUES -->
+    <div class="card">
+      <h3>Core Values</h3>
+      <p><strong>Evidence-Based Integrity:</strong> We ground our resources in proven psychological and psychiatric methods, including CBT, DBT, and mindfulness, to ensure every tool is effective and safe.</p>
+      <p><strong>Radical Accessibility:</strong> We believe wellness tools should be free, self-paced, and available on-demand, removing the barriers to personal growth.</p>
+      <p><strong>Empowered Self-Discovery:</strong> We provide the framework for reflection and journaling, but we honor the individual as the expert of their own experience.</p>
+      <p><strong>Complementary Care:</strong> We recognize our role as a powerful "add-on" to traditional mental health care, prioritizing a holistic approach that supports—but never replaces—professional therapy.</p>
+    </div>
 
-</nav>
-
-<div class="hero-content">
-
-<h1>About TestingNation Wellness</h1>
-<p>Supporting mindfulness, reflection, and personal growth</p>
-
-</div>
-
+  </section>
+  
+  <!-- SAFETY / CRISIS NOTICE -->
+<section class="safety-notice">
+  <h3>Important Safety Notice</h3>
+  <p>
+    TestingNation Wellness is a self-guided resource and is not a replacement for professional therapy or emergency services. 
+    If you are in immediate danger, experiencing a medical or psychiatric emergency, or in need of urgent help, please get to a safe place and call 
+    <strong>911 (US/Canada), 112 (Europe)</strong>, or your local emergency number immediately.
+  </p>
+  <p>
+    You can also reach the <strong>988 Suicide & Crisis Lifeline</strong> by calling or texting 988 (in the US) for 24/7 confidential support.
+  </p>
+  <p>
+    <strong>Safety & Crisis Awareness:</strong> We prioritize user safety above all else. While our platform supports daily wellbeing, we explicitly direct users to professional emergency services—such as 911 or 112—when immediate clinical or physical intervention is required.
+  </p>
 </section>
 
-<div id="menu">
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 TestingNation Wellness</p>
+  </footer>
 
-<ul>
-<li><a href="about.html">About</a></li>
-<li><a href="resources.html">Resources</a></li>
-<li><a href="#">Journal</a></li>
-<li><a href="#">Blog</a></li>
-<li><a href="#">Tools</a></li>
-<li><a href="#">Connect</a></li>
-<li><a href="#">Contact</a></li>
-<li><a href="#">FAQ</a></li>
-</ul>
+  <!-- MENU SCRIPT -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
 
-</div>
-
-<section class="resources">
-
-<h2>Our Mission</h2>
-
-<p>
-TestingNation Wellness was created to provide accessible tools for mindfulness, reflection, and personal wellbeing.
-</p>
-
-<p>
-The platform brings together practical exercises, educational resources, and guided reflection tools designed to support individuals in building awareness, resilience, and emotional balance.
-</p>
-
-<p>
-The project combines research-informed mindfulness practices with structured reflection and journaling methods to help individuals better understand their thoughts, emotions, and experiences.
-</p>
-
-<p>
-TestingNation Wellness is intended to serve as an evolving platform where individuals can explore wellbeing resources, practice mindfulness techniques, and develop sustainable habits that support long-term mental and emotional health.
-</p>
-
-</section>
-
-<footer>
-
-<p>© 2026 TestingNation Wellness</p>
-
-</footer>
-
-<script>
-
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu");
-
-toggle.addEventListener("click", () => {
-
-menu.classList.toggle("active");
-
-if(menu.classList.contains("active")){
-toggle.innerHTML = "✕";
-}else{
-toggle.innerHTML = "☰";
-}
-
-});
-
-</script>
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+      toggle.innerHTML = menu.classList.contains("active") ? "✕" : "☰";
+    });
+  </script>
 
 </body>
 </html>
