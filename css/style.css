@@ -40,6 +40,48 @@ transform:translate(-50%,-50%);
 object-fit:cover;
 z-index:-2;
 }
+/* FONT */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter', 'Segoe UI', sans-serif;
+background:#f4f8fb;
+color:#333;
+line-height:1.6;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+height:420px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* VIDEO */
+
+.hero-video{
+position:absolute;
+top:50%;
+left:50%;
+min-width:100%;
+min-height:100%;
+transform:translate(-50%,-50%);
+object-fit:cover;
+z-index:-2;
+}
 
 /* HERO DARK OVERLAY */
 
@@ -231,4 +273,275 @@ font-size:15px;
 width:220px;
 }
 
+}
+/* RESOURCES / ACCORDION MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  .resources {
+    padding: 20px 15px;
+  }
+
+  .resources h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .accordion {
+    margin-bottom: 15px;
+  }
+
+  .accordion-button {
+    font-size: 16px;
+    padding: 12px 15px;
+  }
+
+  .accordion-button .arrow {
+    font-size: 18px;
+  }
+
+  .accordion-content {
+    padding: 0 15px;
+  }
+
+  .accordion-content h3 {
+    font-size: 20px;
+  }
+
+  .accordion-content h4 {
+    font-size: 16px;
+  }
+
+  .accordion-content p {
+    font-size: 14px;
+  }
+
+/* HERO DARK OVERLAY */
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.35);
+z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:60px;
+background:rgba(20,90,160,.9);
+display:flex;
+align-items:center;
+z-index:1000;
+}
+
+.nav-container{
+width:92%;
+margin:auto;
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* HOME ICON */
+
+.home-icon{
+color:white;
+font-size:26px;
+text-decoration:none;
+cursor:pointer;
+}
+
+/* HAMBURGER */
+
+.menu-toggle{
+color:white;
+font-size:30px;
+cursor:pointer;
+transition:transform .25s ease;
+}
+
+.menu-toggle:hover{
+transform:scale(1.15);
+}
+
+/* SIDE MENU */
+
+#menu{
+position:fixed;
+top:0;
+left:-260px;
+width:240px;
+height:100vh;
+
+background:#145aa0;
+
+padding-top:80px;
+
+transition:left .35s ease;
+
+z-index:999;
+}
+
+/* MENU OPEN */
+
+#menu.active{
+left:0;
+}
+
+/* MENU ITEMS */
+
+#menu ul{
+list-style:none;
+padding:0 25px;
+}
+
+#menu li{
+padding:16px 0;
+border-bottom:1px solid rgba(255,255,255,.25);
+}
+
+#menu a{
+color:white;
+text-decoration:none;
+font-size:17px;
+}
+
+/* HERO TEXT */
+
+.hero-content{
+position:relative;
+z-index:2;
+text-align:center;
+color:white;
+padding:0 20px;
+max-width:700px;
+}
+
+.hero-content h1{
+font-size:42px;
+margin-bottom:15px;
+font-weight:500;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+/* CONSTRUCTION NOTICE */
+
+.construction{
+background:#fff3cd;
+border:1px solid #ffeeba;
+color:#856404;
+text-align:center;
+padding:40px 20px;
+margin:50px auto;
+width:80%;
+max-width:800px;
+border-radius:8px;
+}
+
+/* CARDS */
+
+.cards{
+padding:60px 20px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:25px;
+}
+
+.card{
+background:white;
+padding:28px;
+width:240px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+text-align:center;
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+/* FOOTER */
+
+footer{
+margin-top:40px;
+background:#145aa0;
+color:white;
+text-align:center;
+padding:30px;
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+.hero{
+height:320px;
+}
+
+.hero-content h1{
+font-size:28px;
+}
+
+.hero-content p{
+font-size:15px;
+}
+
+#menu{
+width:220px;
+}
+
+}
+/* RESOURCES / ACCORDION MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  .resources {
+    padding: 20px 15px;
+  }
+
+  .resources h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .accordion {
+    margin-bottom: 15px;
+  }
+
+  .accordion-button {
+    font-size: 16px;
+    padding: 12px 15px;
+  }
+
+  .accordion-button .arrow {
+    font-size: 18px;
+  }
+
+  .accordion-content {
+    padding: 0 15px;
+  }
+
+  .accordion-content h3 {
+    font-size: 20px;
+  }
+
+  .accordion-content h4 {
+    font-size: 16px;
+  }
+
+  .accordion-content p {
+    font-size: 14px;
+  }
 }
