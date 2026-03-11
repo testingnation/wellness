@@ -361,3 +361,22 @@ width:220px;
     padding: 0 15px;
   }
 }
+
+/* SAFETY / CRISIS NOTICE */
+.safety-notice {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px 20px;
+  background-color: #fff3cd; /* yellowish alert background */
+  border: 1px solid #ffeeba;
+  color: #856404;
+  border-radius: 8px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.safety-notice h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #145aa0;
+}
