@@ -1,10 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | TestingNation Wellness</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<video autoplay muted loop playsinline class="hero-video">
+<source src="video/banner.mp4" type="video/mp4">
+</video>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="nav-container">
+
+<a href="index.html" class="home-icon">⌂</a>
+
+<div class="menu-toggle" id="menu-toggle">☰</div>
+
+</div>
+
+</nav>
+
+
+<!-- HERO TEXT -->
+
+<div class="hero-content">
+<h1>Contact Us</h1>
+<p>We welcome your questions, feedback, and collaboration ideas</p>
+</div>
+
+</section>
+
+
+
+<!-- SIDE MENU -->
+
+<div id="menu">
+
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="#">Journal</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Tools</a></li>
+<li><a href="#">Connect</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+
+</div>
+
+
+
+<!-- CONTACT SECTION -->
+
 <section class="contact">
 
-<h2>Contact Us</h2>
+<h2>Send Us a Message</h2>
 
 <form action="https://formspree.io/f/xreykvdv" method="POST">
-
-<!-- Type of Inquiry -->
 
 <label for="inquiry">Type of Inquiry *</label>
 
@@ -20,8 +91,6 @@
 </select>
 
 
-<!-- Name -->
-
 <label>First Name</label>
 <input type="text" name="first_name">
 
@@ -29,19 +98,13 @@
 <input type="text" name="last_name">
 
 
-<!-- Email -->
+<label>Email Address *</label>
+<input type="email" name="email" required>
 
-<label for="email">Email Address *</label>
-<input type="email" name="email" id="email" required>
-
-
-<!-- Organization -->
 
 <label>Organization</label>
 <input type="text" name="organization">
 
-
-<!-- Preferred Contact -->
 
 <label>Preferred Method of Contact</label>
 
@@ -51,11 +114,9 @@
 </select>
 
 
-<!-- Message -->
+<label>Message *</label>
 
-<label for="message">Message *</label>
-
-<textarea name="message" id="message" maxlength="750" required></textarea>
+<textarea name="message" maxlength="750" required></textarea>
 
 <p class="char-note">Maximum 750 characters</p>
 
@@ -65,10 +126,47 @@
 <input type="text" name="_gotcha" style="display:none">
 
 
-<!-- Submit -->
-
 <button type="submit">Submit Message</button>
 
 </form>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 TestingNation Wellness</p>
+
+</footer>
+
+
+
+<!-- MENU SCRIPT -->
+
+<script>
+
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+toggle.addEventListener("click", () => {
+
+menu.classList.toggle("active");
+
+if(menu.classList.contains("active")){
+toggle.innerHTML = "✕";
+}else{
+toggle.innerHTML = "☰";
+}
+
+});
+
+</script>
+
+
+</body>
+</html>
 
 </section>
