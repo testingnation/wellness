@@ -214,8 +214,8 @@ form.addEventListener('submit', async (e) => {
     <label>Message *</label>
     <textarea name="message" maxlength="750" required></textarea>
     <p class="char-note">
-  Characters left: <span id="char-count">750</span>
-</p>
+      Characters left: <span id="char-count">750</span>
+    </p>
 
     <!-- Submit button -->
     <button type="submit">Send Message</button>
@@ -227,9 +227,18 @@ form.addEventListener('submit', async (e) => {
 <!-- CONTACT FORM SCRIPT -->
 <script>
 const form = document.getElementById('contact-form');
+const messageField = form.querySelector('textarea[name="message"]');
+const charCount = document.getElementById('char-count');
 
+// Character counter
+messageField.addEventListener('input', () => {
+  const remaining = 750 - messageField.value.length;
+  charCount.textContent = remaining >= 0 ? remaining : 0;
+});
+
+// Form submission
 form.addEventListener('submit', async (e) => {
-  e.preventDefault(); // prevent default form submission
+  e.preventDefault();
 
   const data = new FormData(form);
 
@@ -241,7 +250,6 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      // Redirect to your custom thank-you page
       window.location.href = 'thankyou.html';
     } else {
       alert('Oops! There was a problem submitting your form. Please try again.');
