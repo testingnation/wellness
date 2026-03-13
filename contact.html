@@ -1,0 +1,74 @@
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<form action="https://formspree.io/f/xreykvdv" method="POST">
+
+<!-- Type of Inquiry -->
+
+<label for="inquiry">Type of Inquiry *</label>
+
+<select name="inquiry" id="inquiry" required>
+<option value="">Select One</option>
+<option>General Inquiry</option>
+<option>Success Story / Testimonial</option>
+<option>Technical Support</option>
+<option>Comments & Feedback</option>
+<option>Content Request / Suggestion</option>
+<option>Media / Press Inquiry</option>
+<option>Partnership Opportunity</option>
+</select>
+
+
+<!-- Name -->
+
+<label>First Name</label>
+<input type="text" name="first_name">
+
+<label>Last Name</label>
+<input type="text" name="last_name">
+
+
+<!-- Email -->
+
+<label for="email">Email Address *</label>
+<input type="email" name="email" id="email" required>
+
+
+<!-- Organization -->
+
+<label>Organization</label>
+<input type="text" name="organization">
+
+
+<!-- Preferred Contact -->
+
+<label>Preferred Method of Contact</label>
+
+<select name="contact_method">
+<option>Email</option>
+<option>Phone</option>
+</select>
+
+
+<!-- Message -->
+
+<label for="message">Message *</label>
+
+<textarea name="message" id="message" maxlength="750" required></textarea>
+
+<p class="char-note">Maximum 750 characters</p>
+
+
+<!-- Spam Protection -->
+
+<input type="text" name="_gotcha" style="display:none">
+
+
+<!-- Submit -->
+
+<button type="submit">Submit Message</button>
+
+</form>
+
+</section>
