@@ -145,10 +145,10 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   // Block links in message
-  if (messageField.value.includes("http")) {
-    alert("Links are not allowed in messages.");
-    return;
-  }
+  if (/http|www|\.com|\.net|\.org|\.ru|\.io|\.xyz/i.test(messageField.value)) {
+  alert("Links are not allowed in messages.");
+  return;
+}
 
   const data = new FormData(form);
 
