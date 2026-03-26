@@ -261,44 +261,209 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 </div>
 
+  <!-- RESULT BOX -->
+<div id="result-box" style="display:none; max-width:800px; margin:40px auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.1); white-space:pre-wrap;"></div>
+  
 <!-- SCRIPT -->
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const inputs = document.querySelectorAll('input[type="radio"]');
-const marker = document.getElementById('mini-marker');
-const dots = document.querySelectorAll('#progress-dots span');
-const scoreText = document.getElementById('mini-score-text');
+  const inputs = document.querySelectorAll('input[type="radio"]');
+  const marker = document.getElementById('mini-marker');
+  const dots = document.querySelectorAll('#progress-dots span');
+  const scoreText = document.getElementById('mini-score-text');
+  const resultBox = document.getElementById('result-box');
 
-inputs.forEach(input => {
-  input.addEventListener('change', updateScore);
-});
+  inputs.forEach(input => {
+    input.addEventListener('change', updateScore);
+  });
 
-function updateScore(){
+  function getInterpretation(score) {
 
-  let total = 0;
-  let answered = 0;
+    const map = {
 
-  for(let i=1;i<=9;i++){
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      27: `27 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
 
-    if(selected){
-      total += parseInt(selected.value);
-      answered++;
-      dots[i-1].classList.add("active");
-    } else {
-      dots[i-1].classList.remove("active");
-    }
+Functionally, the patient finds it is “extremely difficult” to perform life tasks due to their symptoms.
+
+WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
+
+      26: `26 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.
+
+WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
+
+      25: `25 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.
+
+WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
+
+      24: `24 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      23: `23 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      22: `22 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      21: `21 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      20: `20 points
+Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      19: `19 points
+Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      18: `18 points
+Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      17: `17 points
+Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      16: `16 points
+Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      15: `15 points
+Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      14: `14 points
+Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      13: `13 points
+Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      12: `12 points
+Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      11: `11 points
+Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      10: `10 points
+Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      9: `9 points
+Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      8: `8 points
+Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      7: `7 points
+Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      6: `6 points
+Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      5: `5 points
+Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      4: `4 points
+Scores ≤4 suggest minimal depression which may not require treatment.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      3: `3 points
+Scores ≤4 suggest minimal depression which may not require treatment.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      2: `2 points
+Scores ≤4 suggest minimal depression which may not require treatment.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      1: `1 points
+Scores ≤4 suggest minimal depression which may not require treatment.
+
+Functionally, the patient does not report limitations due to their symptoms.`,
+
+      0: `0 points
+Scores ≤4 suggest minimal depression which may not require treatment.
+
+Functionally, the patient does not report limitations due to their symptoms.`
+    };
+
+    return map[score] || "No interpretation available.";
   }
 
-  document.getElementById('progress').textContent = `${answered} / 9 answered`;
+  function updateScore() {
 
-  const percent = (total / 27) * 100;
+    let total = 0;
+    let answered = 0;
 
-  marker.style.left = percent + "%";
-  scoreText.textContent = `Score: ${total}`;
-}
+    for (let i = 1; i <= 9; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+      if (selected) {
+        total += parseInt(selected.value);
+        answered++;
+        dots[i - 1].classList.add("active");
+      } else {
+        dots[i - 1].classList.remove("active");
+      }
+    }
+
+    document.getElementById('progress').textContent = `${answered} / 9 answered`;
+
+    const percent = (total / 27) * 100;
+    marker.style.left = percent + "%";
+    scoreText.textContent = `Score: ${total}`;
+
+    // SHOW RESULT ONLY WHEN COMPLETE
+    if (answered === 9) {
+      resultBox.style.display = "block";
+      resultBox.textContent = getInterpretation(total);
+    } else {
+      resultBox.style.display = "none";
+    }
+  }
 
 });
 
