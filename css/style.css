@@ -1,24 +1,15 @@
 /* =========================
    FONT
 ========================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
-
 /* =========================
-   RESET / BASE FIXES
+   RESET
 ========================= */
-
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
 }
 
 body {
@@ -26,14 +17,11 @@ body {
   background: #f4f8fb;
   color: #333;
   line-height: 1.6;
-  overflow-x: hidden;
 }
-
 
 /* =========================
    HERO
 ========================= */
-
 .hero {
   position: relative;
   height: 420px;
@@ -58,22 +46,20 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   z-index: -1;
 }
-
 
 /* =========================
    NAVBAR
 ========================= */
-
 nav {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
-  background: rgba(20,90,160,.9);
+  background: rgba(20, 90, 160, 0.9);
   display: flex;
   align-items: center;
   z-index: 1000;
@@ -98,18 +84,16 @@ nav {
   color: white;
   font-size: 30px;
   cursor: pointer;
-  transition: transform .25s ease;
+  transition: transform 0.25s ease;
 }
 
 .menu-toggle:hover {
   transform: scale(1.15);
 }
 
-
 /* =========================
    SIDE MENU
 ========================= */
-
 #menu {
   position: fixed;
   top: 0;
@@ -118,7 +102,7 @@ nav {
   height: 100vh;
   background: #145aa0;
   padding-top: 80px;
-  transition: left .35s ease;
+  transition: left 0.35s ease;
   z-index: 999;
 }
 
@@ -133,7 +117,7 @@ nav {
 
 #menu li {
   padding: 16px 0;
-  border-bottom: 1px solid rgba(255,255,255,.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 #menu a {
@@ -142,11 +126,9 @@ nav {
   font-size: 17px;
 }
 
-
 /* =========================
    HERO TEXT
 ========================= */
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -166,11 +148,24 @@ nav {
   font-size: 18px;
 }
 
+/* =========================
+   CONSTRUCTION NOTICE
+========================= */
+.construction {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  text-align: center;
+  padding: 40px 20px;
+  margin: 50px auto;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 8px;
+}
 
 /* =========================
    CARDS
 ========================= */
-
 .cards {
   padding: 60px 20px;
   display: flex;
@@ -184,14 +179,14 @@ nav {
   padding: 28px;
   width: 240px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: .25s;
+  transition: 0.25s;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .cards a.card {
@@ -201,11 +196,21 @@ nav {
   cursor: pointer;
 }
 
+/* =========================
+   FOOTER
+========================= */
+footer {
+  margin-top: 40px;
+  background: #145aa0;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+}
 
 /* =========================
-   ACCORDION / RESOURCES
+   RESOURCES / ACCORDION
 ========================= */
-
 .resources {
   max-width: 700px;
   margin: 0 auto;
@@ -229,6 +234,7 @@ nav {
   background: #145aa0;
   color: white;
   font-size: 20px;
+  font-weight: 500;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -236,6 +242,7 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  transition: background 0.3s ease;
 }
 
 .accordion-button:hover {
@@ -256,28 +263,29 @@ nav {
   background: #f4f8fb;
   padding: 0 25px;
   transition: max-height 0.4s ease, padding 0.4s ease;
+  text-align: left;
 }
 
+.accordion-content p {
+  margin: 10px 0;
+}
 
 /* =========================
    SAFETY NOTICE
 ========================= */
-
 .safety-notice {
   max-width: 700px;
   margin: 40px auto;
   padding: 25px 20px;
-  background-color: #fff3cd;
+  background: #fff3cd;
   border: 1px solid #ffeeba;
   color: #856404;
   border-radius: 8px;
 }
 
-
 /* =========================
    CONTACT
 ========================= */
-
 .contact {
   max-width: 700px;
   margin: 0 auto;
@@ -302,16 +310,21 @@ nav {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-family: inherit;
+  font-size: 15px;
+}
+
+.contact textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .contact button {
-  margin-top: 10px;
   padding: 12px;
   border: none;
   border-radius: 6px;
   background: #145aa0;
   color: white;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -319,11 +332,9 @@ nav {
   background: #0f4375;
 }
 
-
 /* =========================
-   THANK YOU PAGE
+   THANK YOU
 ========================= */
-
 .thankyou {
   max-width: 900px;
   margin: 0 auto;
@@ -336,16 +347,24 @@ nav {
   background: white;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 600px;
 }
 
+.return-home {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #145aa0;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
 
 /* =========================
-   FLOATING SCORE PANEL (FIXED)
+   FLOATING SCORE PANEL
 ========================= */
-
 .floating-score {
   position: fixed;
   top: 90px;
@@ -354,18 +373,11 @@ nav {
   background: white;
   border-radius: 12px;
   padding: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.18);
-  z-index: 9999;
-
-  /* CRITICAL FIX FOR CHROME */
-  display: block;
-  visibility: visible;
-  opacity: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  z-index: 999;
 }
 
-
-/* DOTS */
-
+/* dots */
 .progress-dots {
   display: flex;
   justify-content: space-between;
@@ -383,9 +395,7 @@ nav {
   background: #145aa0;
 }
 
-
-/* SCORE BAR */
-
+/* mini bar */
 .mini-score-bar {
   width: 100%;
   height: 6px;
@@ -406,19 +416,14 @@ nav {
   transition: left 0.3s ease;
 }
 
-
-/* TEXT */
-
 .mini-score-text {
   text-align: center;
   font-weight: 500;
 }
 
-
 /* =========================
    MOBILE
 ========================= */
-
 @media (max-width: 768px) {
 
   .hero {
@@ -437,9 +442,16 @@ nav {
     width: 220px;
   }
 
-  .floating-score {
-    width: 180px;
-    top: 80px;
-    right: 10px;
+  .resources {
+    padding: 20px 15px;
+  }
+
+  .resources h2 {
+    font-size: 26px;
+  }
+
+  .accordion-button {
+    font-size: 18px;
+    padding: 14px 15px;
   }
 }
