@@ -35,7 +35,7 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 <form id="phq9-form">
 
-<!-- Question Template -->
+<!-- Q1 -->
 <div class="question">
 <p>1. Little interest or pleasure in doing things?</p>
 <label><input type="radio" name="q1" value="0"> Not at all</label>
@@ -44,6 +44,7 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 <label><input type="radio" name="q1" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q2 -->
 <div class="question">
 <p>2. Feeling down, depressed, or hopeless?</p>
 <label><input type="radio" name="q2" value="0"> Not at all</label>
@@ -52,22 +53,25 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 <label><input type="radio" name="q2" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q3 -->
 <div class="question">
-<p>3. Trouble falling or staying asleep, or sleeping too much?</p>
+<p>3. Trouble falling or staying asleep?</p>
 <label><input type="radio" name="q3" value="0"> Not at all</label>
 <label><input type="radio" name="q3" value="1"> Several days</label>
 <label><input type="radio" name="q3" value="2"> More than half the days</label>
 <label><input type="radio" name="q3" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q4 -->
 <div class="question">
-<p>4. Feeling tired or having little energy?</p>
+<p>4. Feeling tired or low energy?</p>
 <label><input type="radio" name="q4" value="0"> Not at all</label>
 <label><input type="radio" name="q4" value="1"> Several days</label>
 <label><input type="radio" name="q4" value="2"> More than half the days</label>
 <label><input type="radio" name="q4" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q5 -->
 <div class="question">
 <p>5. Poor appetite or overeating?</p>
 <label><input type="radio" name="q5" value="0"> Not at all</label>
@@ -76,32 +80,36 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 <label><input type="radio" name="q5" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q6 -->
 <div class="question">
-<p>6. Feeling bad about yourself — or that you are a failure?</p>
+<p>6. Feeling bad about yourself?</p>
 <label><input type="radio" name="q6" value="0"> Not at all</label>
 <label><input type="radio" name="q6" value="1"> Several days</label>
 <label><input type="radio" name="q6" value="2"> More than half the days</label>
 <label><input type="radio" name="q6" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q7 -->
 <div class="question">
-<p>7. Trouble concentrating on things?</p>
+<p>7. Trouble concentrating?</p>
 <label><input type="radio" name="q7" value="0"> Not at all</label>
 <label><input type="radio" name="q7" value="1"> Several days</label>
 <label><input type="radio" name="q7" value="2"> More than half the days</label>
 <label><input type="radio" name="q7" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q8 -->
 <div class="question">
-<p>8. Moving or speaking slowly, or being restless?</p>
+<p>8. Moving/speaking slowly or restlessness?</p>
 <label><input type="radio" name="q8" value="0"> Not at all</label>
 <label><input type="radio" name="q8" value="1"> Several days</label>
 <label><input type="radio" name="q8" value="2"> More than half the days</label>
 <label><input type="radio" name="q8" value="3"> Nearly every day</label>
 </div>
 
+<!-- Q9 -->
 <div class="question">
-<p>9. Thoughts that you would be better off dead or hurting yourself?</p>
+<p>9. Thoughts of self-harm or being better off dead?</p>
 <label><input type="radio" name="q9" value="0"> Not at all</label>
 <label><input type="radio" name="q9" value="1"> Several days</label>
 <label><input type="radio" name="q9" value="2"> More than half the days</label>
@@ -110,8 +118,26 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 </form>
 
-<!-- RESULTS -->
+<!-- FLOATING SCORE PANEL (REQUIRED FOR VISIBILITY) -->
+<div class="floating-score">
 
+  <div class="progress-dots" id="progress-dots">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="mini-score-bar">
+    <div id="mini-marker"></div>
+  </div>
+
+  <div class="mini-score-text" id="mini-score-text">
+    Score: 0
+  </div>
+
+</div>
+
+<!-- RESULTS -->
 <div class="results">
 
 <h3>Your Score</h3>
@@ -122,20 +148,31 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 <div id="score-feedback" class="score-feedback"></div>
 
+<button id="print-btn" disabled>Print Results</button>
+
 </div>
 
 </section>
 
-<!-- SCRIPT -->
-
+<!-- SCRIPT (SAFE + CHROME-COMPATIBLE) -->
 <script>
+
+document.addEventListener("DOMContentLoaded", () => {
 
 const inputs = document.querySelectorAll('input[type="radio"]');
 const marker = document.getElementById('score-marker');
+const miniMarker = document.getElementById('mini-marker');
 const feedback = document.getElementById('score-feedback');
+const dots = document.querySelectorAll('#progress-dots span');
+const scoreText = document.getElementById('mini-score-text');
+const printBtn = document.getElementById("print-btn");
 
 inputs.forEach(input => {
   input.addEventListener('change', updateScore);
+});
+
+printBtn.addEventListener("click", () => {
+  window.print();
 });
 
 function updateScore(){
@@ -146,17 +183,30 @@ function updateScore(){
 
   for(let i=1;i<=9;i++){
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
     if(selected){
       total += parseInt(selected.value);
       answered++;
+
+      dots[i-1].classList.add("active");
+
       if(i === 9) q9Value = parseInt(selected.value);
+    } else {
+      dots[i-1].classList.remove("active");
     }
   }
 
   document.getElementById('progress').textContent = `${answered} / 9 answered`;
 
   const percent = (total / 27) * 100;
+
   marker.style.left = percent + "%";
+  miniMarker.style.left = percent + "%";
+
+  scoreText.textContent = `Score: ${total}`;
+
+  // Enable print ONLY when complete
+  printBtn.disabled = answered !== 9;
 
   if(answered === 0){
     feedback.innerHTML = "";
@@ -166,30 +216,31 @@ function updateScore(){
   let message = "";
 
   if(total <= 4){
-    message = "<strong>Minimal symptoms.</strong> Monitoring may be sufficient.";
+    message = "<strong>Minimal symptoms.</strong>";
   }
   else if(total <= 9){
-    message = "<strong>Mild symptoms.</strong> Follow-up may be helpful.";
+    message = "<strong>Mild symptoms.</strong>";
   }
   else if(total <= 14){
-    message = "<strong>Moderate symptoms.</strong> A treatment plan may be beneficial.";
+    message = "<strong>Moderate symptoms.</strong>";
   }
   else if(total <= 19){
-    message = "<strong>Moderately severe symptoms.</strong> Active treatment is typically recommended.";
+    message = "<strong>Moderately severe symptoms.</strong>";
   }
   else{
-    message = "<strong>Severe symptoms.</strong> Prompt professional evaluation is strongly recommended.";
+    message = "<strong>Severe symptoms.</strong>";
   }
 
   if(q9Value > 0){
     message += `
     <br><br><strong style="color:red;">
-    ⚠️ Important: You indicated thoughts related to self-harm.
-    Please seek immediate support or speak with a professional.
+    ⚠️ Important: Thoughts of self-harm detected. Please seek support immediately.
     </strong>`;
   }
 
   feedback.innerHTML = message;
 }
+
+});
 
 </script>
