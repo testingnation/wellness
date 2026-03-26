@@ -159,8 +159,6 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 <form id="phq9-form">
 
-<form id="phq9-form">
-
 <!-- Q1 -->
 <div class="question">
 <p>1. Little interest or pleasure in doing things?</p>
@@ -444,7 +442,9 @@ Functionally, the patient does not report limitations due to their symptoms.`
       if (selected) {
         total += parseInt(selected.value);
         answered++;
-        dots[i - 1].classList.add("active");
+        if (dots[i - 1]) {
+  dots[i - 1].classList.add("active");
+}
       } else {
         dots[i - 1].classList.remove("active");
       }
