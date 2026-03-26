@@ -489,3 +489,64 @@ transition:background .25s;
 .return-home:hover{
 background:#0f4375;
 }
+/* FLOATING SCORE PANEL */
+
+.floating-score {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  z-index: 999;
+}
+
+/* Progress dots */
+
+.progress-dots {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.progress-dots span {
+  width: 12px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.progress-dots span.active {
+  background: #145aa0;
+}
+
+/* Mini score bar */
+
+.mini-score-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(to right, green, yellow, orange, red);
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#mini-marker {
+  width: 14px;
+  height: 14px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  left: 0%;
+  transition: left 0.3s ease;
+}
+
+/* Score text */
+
+.mini-score-text {
+  text-align: center;
+  font-weight: 500;
+}
