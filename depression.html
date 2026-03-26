@@ -22,12 +22,87 @@
   font-size: 14px;
 }
 
+/* BASIC LAYOUT SAFETY (prevents white screen collapse issues) */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.assessment {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.floating-score {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  z-index: 999;
+}
+
+.progress-dots {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.progress-dots span {
+  width: 12px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.progress-dots span.active {
+  background: #145aa0;
+}
+
+.mini-score-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(to right, green, yellow, orange, red);
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#mini-marker {
+  width: 14px;
+  height: 14px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  left: 0%;
+  transition: left 0.3s ease;
+}
+
+</style>
+
+</head>
+
+<body>
+
 <!-- FORM -->
 <section class="assessment">
 
 <h2>Depression Self-Assessment</h2>
 
-<p class="assessment-intro">
+<p>
 Over the past <strong>2 weeks</strong>, how often have you been bothered by the following problems?
 </p>
 
@@ -53,60 +128,6 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 <label><input type="radio" name="q2" value="3"> Nearly every day</label>
 </div>
 
-<!-- Q3 -->
-<div class="question">
-<p>3. Trouble falling or staying asleep?</p>
-<label><input type="radio" name="q3" value="0"> Not at all</label>
-<label><input type="radio" name="q3" value="1"> Several days</label>
-<label><input type="radio" name="q3" value="2"> More than half the days</label>
-<label><input type="radio" name="q3" value="3"> Nearly every day</label>
-</div>
-
-<!-- Q4 -->
-<div class="question">
-<p>4. Feeling tired or low energy?</p>
-<label><input type="radio" name="q4" value="0"> Not at all</label>
-<label><input type="radio" name="q4" value="1"> Several days</label>
-<label><input type="radio" name="q4" value="2"> More than half the days</label>
-<label><input type="radio" name="q4" value="3"> Nearly every day</label>
-</div>
-
-<!-- Q5 -->
-<div class="question">
-<p>5. Poor appetite or overeating?</p>
-<label><input type="radio" name="q5" value="0"> Not at all</label>
-<label><input type="radio" name="q5" value="1"> Several days</label>
-<label><input type="radio" name="q5" value="2"> More than half the days</label>
-<label><input type="radio" name="q5" value="3"> Nearly every day</label>
-</div>
-
-<!-- Q6 -->
-<div class="question">
-<p>6. Feeling bad about yourself?</p>
-<label><input type="radio" name="q6" value="0"> Not at all</label>
-<label><input type="radio" name="q6" value="1"> Several days</label>
-<label><input type="radio" name="q6" value="2"> More than half the days</label>
-<label><input type="radio" name="q6" value="3"> Nearly every day</label>
-</div>
-
-<!-- Q7 -->
-<div class="question">
-<p>7. Trouble concentrating?</p>
-<label><input type="radio" name="q7" value="0"> Not at all</label>
-<label><input type="radio" name="q7" value="1"> Several days</label>
-<label><input type="radio" name="q7" value="2"> More than half the days</label>
-<label><input type="radio" name="q7" value="3"> Nearly every day</label>
-</div>
-
-<!-- Q8 -->
-<div class="question">
-<p>8. Moving/speaking slowly or restlessness?</p>
-<label><input type="radio" name="q8" value="0"> Not at all</label>
-<label><input type="radio" name="q8" value="1"> Several days</label>
-<label><input type="radio" name="q8" value="2"> More than half the days</label>
-<label><input type="radio" name="q8" value="3"> Nearly every day</label>
-</div>
-
 <!-- Q9 -->
 <div class="question">
 <p>9. Thoughts of self-harm or being better off dead?</p>
@@ -118,7 +139,7 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 </form>
 
-<!-- FLOATING SCORE PANEL (REQUIRED FOR VISIBILITY) -->
+<!-- FLOATING PANEL -->
 <div class="floating-score">
 
   <div class="progress-dots" id="progress-dots">
@@ -131,55 +152,28 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
     <div id="mini-marker"></div>
   </div>
 
-  <div class="mini-score-text" id="mini-score-text">
-    Score: 0
-  </div>
+  <div id="mini-score-text">Score: 0</div>
 
 </div>
 
-<!-- RESULTS -->
-<div class="results">
-
-<h3>Your Score</h3>
-
-<div class="score-bar">
-  <div id="score-marker"></div>
-</div>
-
-<div id="score-feedback" class="score-feedback"></div>
-
-<button id="print-btn" disabled>Print Results</button>
-
-</div>
-
-</section>
-
-<!-- SCRIPT (SAFE + CHROME-COMPATIBLE) -->
+<!-- SCRIPT -->
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
 
 const inputs = document.querySelectorAll('input[type="radio"]');
-const marker = document.getElementById('score-marker');
-const miniMarker = document.getElementById('mini-marker');
-const feedback = document.getElementById('score-feedback');
+const marker = document.getElementById('mini-marker');
 const dots = document.querySelectorAll('#progress-dots span');
 const scoreText = document.getElementById('mini-score-text');
-const printBtn = document.getElementById("print-btn");
 
 inputs.forEach(input => {
   input.addEventListener('change', updateScore);
-});
-
-printBtn.addEventListener("click", () => {
-  window.print();
 });
 
 function updateScore(){
 
   let total = 0;
   let answered = 0;
-  let q9Value = 0;
 
   for(let i=1;i<=9;i++){
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
@@ -187,10 +181,7 @@ function updateScore(){
     if(selected){
       total += parseInt(selected.value);
       answered++;
-
       dots[i-1].classList.add("active");
-
-      if(i === 9) q9Value = parseInt(selected.value);
     } else {
       dots[i-1].classList.remove("active");
     }
@@ -201,44 +192,12 @@ function updateScore(){
   const percent = (total / 27) * 100;
 
   marker.style.left = percent + "%";
-  miniMarker.style.left = percent + "%";
-
   scoreText.textContent = `Score: ${total}`;
-
-  // Enable print ONLY when complete
-  printBtn.disabled = answered !== 9;
-
-  if(answered === 0){
-    feedback.innerHTML = "";
-    return;
-  }
-
-  let message = "";
-
-  if(total <= 4){
-    message = "<strong>Minimal symptoms.</strong>";
-  }
-  else if(total <= 9){
-    message = "<strong>Mild symptoms.</strong>";
-  }
-  else if(total <= 14){
-    message = "<strong>Moderate symptoms.</strong>";
-  }
-  else if(total <= 19){
-    message = "<strong>Moderately severe symptoms.</strong>";
-  }
-  else{
-    message = "<strong>Severe symptoms.</strong>";
-  }
-
-  if(q9Value > 0){
-    message += `
-    <br><br><strong style="color:red;">
-    ⚠️ Important: Thoughts of self-harm detected. Please seek support immediately.
-    </strong>`;
-  }
-
-  feedback.innerHTML = message;
 }
 
 });
+
+</script>
+
+</body>
+</html>
