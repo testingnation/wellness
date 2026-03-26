@@ -22,167 +22,23 @@
   font-size: 14px;
 }
 
-/* FORM */
-.assessment {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.question {
-  margin-bottom: 25px;
-}
-
-.question p {
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.question label {
-  display: block;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
-
-/* PROGRESS */
-#progress {
-  text-align: right;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #555;
-}
-
-/* BUTTON */
-.assessment button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #145aa0;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* SCORE BAR */
-.score-bar {
-  position: relative;
-  height: 20px;
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
-  background: linear-gradient(to right, green, yellow, orange, red);
-  border-radius: 10px;
-}
-
-#score-marker {
-  position: absolute;
-  top: -5px;
-  width: 10px;
-  height: 30px;
-  background: black;
-  border-radius: 3px;
-  left: 0%;
-}
-
-/* RESULTS */
-#results {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  display: none;
-  text-align: center;
-}
-
-/* MEDICAL SUMMARY CARD */
-.summary-card {
-  margin-top: 30px;
-  padding: 20px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.summary-card h3 {
-  margin-bottom: 10px;
-  color: #145aa0;
-}
-
-.summary-card p {
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.clinical-note {
-  margin-top: 15px;
-  font-size: 13px;
-  color: #555;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<!-- HERO -->
-<section class="hero">
-
-<video autoplay muted loop playsinline class="hero-video">
-<source src="video/banner.mp4" type="video/mp4">
-</video>
-
-<nav>
-<div class="nav-container">
-<a href="index.html" class="home-icon">⌂</a>
-<div class="menu-toggle" id="menu-toggle">☰</div>
-</div>
-</nav>
-
-<div class="hero-content">
-<h1>Depression Self-Assessment</h1>
-<p>Reflect on your recent experiences</p>
-</div>
-
-</section>
-
-<!-- SIDE MENU -->
-<div id="menu">
-<ul>
-<li><a href="about.html">About</a></li>
-<li><a href="resources.html">Resources</a></li>
-<li><a href="#">Journal</a></li>
-<li><a href="#">Blog</a></li>
-<li><a href="#">Tools</a></li>
-<li><a href="#">Connect</a></li>
-<li><a href="contact.html">Contact</a></li>
-<li><a href="#">FAQ</a></li>
-</ul>
-</div>
-
-<!-- DISCLAIMER -->
-<section class="disclaimer">
-<p>
-This self-assessment is for informational purposes only and is not a diagnosis.
-</p>
-<p>
-If your results raise concerns, consider sharing them with a qualified healthcare provider.
-</p>
-<p>
-If you are in distress or experiencing thoughts of self-harm, call 911 or 988 (U.S.) or your local emergency number.
-</p>
-</section>
-
 <!-- FORM -->
 <section class="assessment">
+
+<h2>Depression Self-Assessment</h2>
+
+<p class="assessment-intro">
+Over the past <strong>2 weeks</strong>, how often have you been bothered by the following problems?
+</p>
 
 <p id="progress">0 / 9 answered</p>
 
 <form id="phq9-form">
 
+<!-- Question Template -->
 <div class="question">
 <p>1. Little interest or pleasure in doing things?</p>
-<label><input type="radio" name="q1" value="0" required> Not at all</label>
+<label><input type="radio" name="q1" value="0"> Not at all</label>
 <label><input type="radio" name="q1" value="1"> Several days</label>
 <label><input type="radio" name="q1" value="2"> More than half the days</label>
 <label><input type="radio" name="q1" value="3"> Nearly every day</label>
@@ -190,162 +46,150 @@ If you are in distress or experiencing thoughts of self-harm, call 911 or 988 (U
 
 <div class="question">
 <p>2. Feeling down, depressed, or hopeless?</p>
-<label><input type="radio" name="q2" value="0" required> Not at all</label>
+<label><input type="radio" name="q2" value="0"> Not at all</label>
 <label><input type="radio" name="q2" value="1"> Several days</label>
 <label><input type="radio" name="q2" value="2"> More than half the days</label>
 <label><input type="radio" name="q2" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>3. Trouble sleeping?</p>
-<label><input type="radio" name="q3" value="0" required> Not at all</label>
+<p>3. Trouble falling or staying asleep, or sleeping too much?</p>
+<label><input type="radio" name="q3" value="0"> Not at all</label>
 <label><input type="radio" name="q3" value="1"> Several days</label>
 <label><input type="radio" name="q3" value="2"> More than half the days</label>
 <label><input type="radio" name="q3" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>4. Feeling tired or low energy?</p>
-<label><input type="radio" name="q4" value="0" required> Not at all</label>
+<p>4. Feeling tired or having little energy?</p>
+<label><input type="radio" name="q4" value="0"> Not at all</label>
 <label><input type="radio" name="q4" value="1"> Several days</label>
 <label><input type="radio" name="q4" value="2"> More than half the days</label>
 <label><input type="radio" name="q4" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>5. Appetite changes?</p>
-<label><input type="radio" name="q5" value="0" required> Not at all</label>
+<p>5. Poor appetite or overeating?</p>
+<label><input type="radio" name="q5" value="0"> Not at all</label>
 <label><input type="radio" name="q5" value="1"> Several days</label>
 <label><input type="radio" name="q5" value="2"> More than half the days</label>
 <label><input type="radio" name="q5" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>6. Feeling bad about yourself?</p>
-<label><input type="radio" name="q6" value="0" required> Not at all</label>
+<p>6. Feeling bad about yourself — or that you are a failure?</p>
+<label><input type="radio" name="q6" value="0"> Not at all</label>
 <label><input type="radio" name="q6" value="1"> Several days</label>
 <label><input type="radio" name="q6" value="2"> More than half the days</label>
 <label><input type="radio" name="q6" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>7. Trouble concentrating?</p>
-<label><input type="radio" name="q7" value="0" required> Not at all</label>
+<p>7. Trouble concentrating on things?</p>
+<label><input type="radio" name="q7" value="0"> Not at all</label>
 <label><input type="radio" name="q7" value="1"> Several days</label>
 <label><input type="radio" name="q7" value="2"> More than half the days</label>
 <label><input type="radio" name="q7" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>8. Moving or speaking slowly or restlessly?</p>
-<label><input type="radio" name="q8" value="0" required> Not at all</label>
+<p>8. Moving or speaking slowly, or being restless?</p>
+<label><input type="radio" name="q8" value="0"> Not at all</label>
 <label><input type="radio" name="q8" value="1"> Several days</label>
 <label><input type="radio" name="q8" value="2"> More than half the days</label>
 <label><input type="radio" name="q8" value="3"> Nearly every day</label>
 </div>
 
 <div class="question">
-<p>9. Thoughts of self-harm?</p>
-<label><input type="radio" name="q9" value="0" required> Not at all</label>
+<p>9. Thoughts that you would be better off dead or hurting yourself?</p>
+<label><input type="radio" name="q9" value="0"> Not at all</label>
 <label><input type="radio" name="q9" value="1"> Several days</label>
 <label><input type="radio" name="q9" value="2"> More than half the days</label>
 <label><input type="radio" name="q9" value="3"> Nearly every day</label>
 </div>
 
-<button type="submit">Calculate Score</button>
-
 </form>
 
-</section>
-
 <!-- RESULTS -->
-<section id="results">
 
-<h2>Your Score: <span id="score"></span></h2>
+<div class="results">
+
+<h3>Your Score</h3>
 
 <div class="score-bar">
-<div id="score-marker"></div>
+  <div id="score-marker"></div>
 </div>
 
-<p id="interpretation"></p>
+<div id="score-feedback" class="score-feedback"></div>
 
-<div class="summary-card">
-<h3>Assessment Summary</h3>
-<p><strong>Total Score:</strong> <span id="summary-score"></span></p>
-<p><strong>Severity:</strong> <span id="summary-severity"></span></p>
-<p><strong>Date:</strong> <span id="summary-date"></span></p>
-
-<p class="clinical-note">
-This is a screening result and not a diagnosis. Please consult a licensed professional.
-</p>
 </div>
-
-<button onclick="window.print()">Print / Save</button>
 
 </section>
 
-<!-- SCRIPTS -->
+<!-- SCRIPT -->
+
 <script>
 
-// MENU
-const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu");
-
-toggle.addEventListener("click", () => {
-menu.classList.toggle("active");
-toggle.innerHTML = menu.classList.contains("active") ? "✕" : "☰";
-});
-
-// PROGRESS
 const inputs = document.querySelectorAll('input[type="radio"]');
-const progress = document.getElementById('progress');
+const marker = document.getElementById('score-marker');
+const feedback = document.getElementById('score-feedback');
 
-inputs.forEach(() => {
-document.addEventListener('change', () => {
-let answered = 0;
-for(let i=1;i<=9;i++){
-if(document.querySelector(`input[name="q${i}"]:checked`)){answered++;}
+inputs.forEach(input => {
+  input.addEventListener('change', updateScore);
+});
+
+function updateScore(){
+
+  let total = 0;
+  let answered = 0;
+  let q9Value = 0;
+
+  for(let i=1;i<=9;i++){
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if(selected){
+      total += parseInt(selected.value);
+      answered++;
+      if(i === 9) q9Value = parseInt(selected.value);
+    }
+  }
+
+  document.getElementById('progress').textContent = `${answered} / 9 answered`;
+
+  const percent = (total / 27) * 100;
+  marker.style.left = percent + "%";
+
+  if(answered === 0){
+    feedback.innerHTML = "";
+    return;
+  }
+
+  let message = "";
+
+  if(total <= 4){
+    message = "<strong>Minimal symptoms.</strong> Monitoring may be sufficient.";
+  }
+  else if(total <= 9){
+    message = "<strong>Mild symptoms.</strong> Follow-up may be helpful.";
+  }
+  else if(total <= 14){
+    message = "<strong>Moderate symptoms.</strong> A treatment plan may be beneficial.";
+  }
+  else if(total <= 19){
+    message = "<strong>Moderately severe symptoms.</strong> Active treatment is typically recommended.";
+  }
+  else{
+    message = "<strong>Severe symptoms.</strong> Prompt professional evaluation is strongly recommended.";
+  }
+
+  if(q9Value > 0){
+    message += `
+    <br><br><strong style="color:red;">
+    ⚠️ Important: You indicated thoughts related to self-harm.
+    Please seek immediate support or speak with a professional.
+    </strong>`;
+  }
+
+  feedback.innerHTML = message;
 }
-progress.textContent = `${answered} / 9 answered`;
-});
-});
-
-// FORM
-document.getElementById('phq9-form').addEventListener('submit', function(e){
-e.preventDefault();
-
-let total = 0;
-
-for(let i=1;i<=9;i++){
-total += parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-}
-
-document.getElementById('score').textContent = total;
-document.getElementById('summary-score').textContent = total;
-
-let severity = "";
-
-if(total <= 4) severity = "Minimal";
-else if(total <= 9) severity = "Mild";
-else if(total <= 14) severity = "Moderate";
-else if(total <= 19) severity = "Moderately Severe";
-else severity = "Severe";
-
-document.getElementById('interpretation').textContent = severity;
-document.getElementById('summary-severity').textContent = severity;
-
-const percent = (total / 27) * 100;
-document.getElementById('score-marker').style.left = percent + "%";
-
-document.getElementById('summary-date').textContent = new Date().toLocaleDateString();
-
-document.getElementById('results').style.display = "block";
-
-window.scrollTo({ top: document.getElementById('results').offsetTop, behavior: 'smooth' });
-
-});
 
 </script>
-
-</body>
-</html>
