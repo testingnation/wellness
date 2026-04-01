@@ -241,9 +241,8 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 </div>
 
 </form>
-
 <!-- FLOATING PANEL -->
-<div class="floating-score">
+<div class="floating-score" id="floating-panel">
 
   <div class="progress-dots" id="progress-dots">
     <span></span><span></span><span></span>
@@ -259,12 +258,18 @@ Over the past <strong>2 weeks</strong>, how often have you been bothered by the 
 
 </div>
 
-  <!-- RESULT BOX -->
-<div id="result-box" style="display:none; max-width:800px; margin:40px auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.1); white-space:pre-wrap;"></div>
-  
+<!-- RESULTS -->
+<div id="result-box" class="result-box" style="display:none;">
+  <h3>Your Assessment Result</h3>
+  <pre id="result-text"></pre>
+
+  <button id="print-btn" class="print-btn">
+    Print Full Report
+  </button>
+</div>
+
 <!-- SCRIPT -->
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const inputs = document.querySelectorAll('input[type="radio"]');
@@ -272,163 +277,70 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = document.querySelectorAll('#progress-dots span');
   const scoreText = document.getElementById('mini-score-text');
   const resultBox = document.getElementById('result-box');
+  const resultText = document.getElementById('result-text');
+  const progressText = document.getElementById('progress');
+  const printBtn = document.getElementById('print-btn');
+  const floatingPanel = document.getElementById('floating-panel');
 
+  // PRINT BUTTON
+  printBtn.addEventListener("click", () => window.print());
+
+  // INPUT LISTENERS
   inputs.forEach(input => {
     input.addEventListener('change', updateScore);
   });
 
+  // FLOATING PANEL VISIBILITY (only after scroll)
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      floatingPanel.style.opacity = "1";
+    } else {
+      floatingPanel.style.opacity = "0";
+    }
+  });
+
   function getInterpretation(score) {
 
-    const map = {
-
-      27: `27 points
+    // SIMPLIFIED LOGIC (same outcome, much cleaner + faster)
+    if (score >= 20) {
+      return `${score} points
 Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
 
-Functionally, the patient finds it is “extremely difficult” to perform life tasks due to their symptoms.
+Functionally, the patient ${
+        score === 27
+          ? "finds it is “extremely difficult” to perform life tasks due to their symptoms."
+          : "does not report limitations due to their symptoms."
+      }
 
-WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
+${score >= 25 ? `
+WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.` : ""}`;
+    }
 
-      26: `26 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.
-
-WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
-
-      25: `25 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.
-
-WARNING: This patient is having thoughts concerning for suicidal ideation or self-harm, and should be probed further, referred to, or transferred for emergency psychiatric evaluation as clinically appropriate and depending on clinician overall risk assessment.`,
-
-      24: `24 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      23: `23 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      22: `22 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      21: `21 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      20: `20 points
-Scores 20 and greater suggest severe depression; patients typically should have immediate initiation of pharmacotherapy and expedited referral to mental health specialist.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      19: `19 points
+    if (score >= 15) {
+      return `${score} points
 Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
 
-Functionally, the patient does not report limitations due to their symptoms.`,
+Functionally, the patient does not report limitations due to their symptoms.`;
+    }
 
-      18: `18 points
-Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      17: `17 points
-Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      16: `16 points
-Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      15: `15 points
-Scores 15-19 suggest moderately severe depression; patients typically should have immediate initiation of pharmacotherapy and/or psychotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      14: `14 points
+    if (score >= 10) {
+      return `${score} points
 Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
 
-Functionally, the patient does not report limitations due to their symptoms.`,
+Functionally, the patient does not report limitations due to their symptoms.`;
+    }
 
-      13: `13 points
-Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      12: `12 points
-Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      11: `11 points
-Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      10: `10 points
-Scores 10-14 suggest moderate depression severity; patients should have a treatment plan ranging from counseling, followup, and/or pharmacotherapy.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      9: `9 points
+    if (score >= 5) {
+      return `${score} points
 Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
 
-Functionally, the patient does not report limitations due to their symptoms.`,
+Functionally, the patient does not report limitations due to their symptoms.`;
+    }
 
-      8: `8 points
-Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      7: `7 points
-Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      6: `6 points
-Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      5: `5 points
-Scores 5-9 suggest mild depression which may require only watchful waiting and repeated PHQ-9 at followup.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      4: `4 points
+    return `${score} points
 Scores ≤4 suggest minimal depression which may not require treatment.
 
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      3: `3 points
-Scores ≤4 suggest minimal depression which may not require treatment.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      2: `2 points
-Scores ≤4 suggest minimal depression which may not require treatment.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      1: `1 points
-Scores ≤4 suggest minimal depression which may not require treatment.
-
-Functionally, the patient does not report limitations due to their symptoms.`,
-
-      0: `0 points
-Scores ≤4 suggest minimal depression which may not require treatment.
-
-Functionally, the patient does not report limitations due to their symptoms.`
-    };
-
-    return map[score] || "No interpretation available.";
+Functionally, the patient does not report limitations due to their symptoms.`;
   }
 
   function updateScore() {
@@ -438,20 +350,27 @@ Functionally, the patient does not report limitations due to their symptoms.`
 
     for (let i = 1; i <= 9; i++) {
       const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const question = document.querySelector(`input[name="q${i}"]`)?.closest('.question');
 
       if (selected) {
         total += parseInt(selected.value);
         answered++;
-        if (dots[i - 1]) {
-  dots[i - 1].classList.add("active");
-}
+
+        if (dots[i - 1]) dots[i - 1].classList.add("active");
+        if (question) question.classList.add("answered");
+
       } else {
-        dots[i - 1].classList.remove("active");
+        if (dots[i - 1]) dots[i - 1].classList.remove("active");
+        if (question) question.classList.remove("answered");
       }
     }
 
-    document.getElementById('progress').textContent = `${answered} / 9 answered`;
+    // UPDATE PROGRESS
+    if (progressText) {
+      progressText.textContent = `${answered} / 9 answered`;
+    }
 
+    // UPDATE SCORE BAR
     const percent = (total / 27) * 100;
     marker.style.left = percent + "%";
     scoreText.textContent = `Score: ${total}`;
@@ -459,15 +378,15 @@ Functionally, the patient does not report limitations due to their symptoms.`
     // SHOW RESULT ONLY WHEN COMPLETE
     if (answered === 9) {
       resultBox.style.display = "block";
-      resultBox.textContent = getInterpretation(total);
+      resultText.textContent = getInterpretation(total);
+
+      // Smooth scroll to result
+      resultBox.scrollIntoView({ behavior: "smooth" });
+
     } else {
       resultBox.style.display = "none";
     }
   }
 
 });
-
 </script>
-
-</body>
-</html>
