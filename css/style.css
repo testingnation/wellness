@@ -367,14 +367,17 @@ footer {
 ========================= */
 .floating-score {
   position: fixed;
-  top: 90px;
+  top: 140px;
   right: 20px;
   width: 220px;
   background: white;
   border-radius: 12px;
   padding: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
   z-index: 999;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 /* dots */
@@ -395,7 +398,46 @@ footer {
   background: #145aa0;
 }
 
-/* mini bar */
+/* =========================
+   RESULT BOX
+========================= */
+.result-box {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+.result-box h3 {
+  margin-bottom: 15px;
+  color: #145aa0;
+}
+
+.result-box pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.print-btn {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #145aa0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.print-btn:hover {
+  background: #0f4375;
+}
+
+/* =========================
+   MINI SCORE BAR
+========================= */
 .mini-score-bar {
   width: 100%;
   height: 6px;
@@ -419,6 +461,32 @@ footer {
 .mini-score-text {
   text-align: center;
   font-weight: 500;
+}
+
+/* =========================
+   QUESTIONS
+========================= */
+.question p {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.question label {
+  display: block;
+  padding: 8px 10px;
+  margin: 6px 0;
+  background: #f9fbfd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.question label:hover {
+  background: #eef4fa;
+}
+
+.question input[type="radio"] {
+  margin-right: 8px;
 }
 
 /* =========================
@@ -454,4 +522,33 @@ footer {
     font-size: 18px;
     padding: 14px 15px;
   }
+
+}
+
+/* =========================
+   PRINT
+========================= */
+@media print {
+
+  nav,
+  .hero,
+  .floating-score,
+  .menu-toggle,
+  #menu {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .question {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .print-btn {
+    display: none;
+  }
+
 }
