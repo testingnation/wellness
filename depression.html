@@ -145,17 +145,39 @@ body {
 <!-- FORM -->
 <section class="assessment">
 
-<h2>Depression Self-Assessment</h2>
+  <h2>Depression Self-Assessment</h2>
 
-<p>
-Over the past <strong>2 weeks</strong>, how often have you been bothered by the following problems?
-</p>
+  <p class="intro-text">
+    This brief assessment is based on widely used clinical screening tools.
+    It can help you better understand how you have been feeling recently.
+  </p>
 
-<p id="progress">0 / 9 answered</p>
+  <p class="instruction-text">
+    Over the past <strong>2 weeks</strong>, how often have you been bothered by the following problems?
+  </p>
 
-<form id="phq9-form">
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Important Notice</strong><br><br>
 
-<!-- Q1 -->
+    This self-assessment is intended for informational and educational purposes only and does not constitute a clinical diagnosis or medical advice.
+
+    The results are designed to support personal reflection on your current mental wellbeing. They should not be used as a substitute for evaluation by a qualified healthcare professional.
+
+    If your responses indicate moderate to severe symptoms, or if you are experiencing distress or thoughts of self-harm, it is strongly recommended that you seek professional support.
+
+    You may wish to print your results and share them with a licensed provider to support further discussion.
+
+    If you are in immediate distress or believe you may be at risk, please contact emergency services or a mental health crisis line immediately.
+  </div>
+
+  <!-- PROGRESS -->
+  <p id="progress" class="progress-text">0 / 9 answered</p>
+
+  <!-- FORM START -->
+  <form id="phq9-form">
+
+    <!-- Q1 -->
 <div class="question">
 <p>1. Little interest or pleasure in doing things?</p>
 <label><input type="radio" name="q1" value="0"> Not at all</label>
