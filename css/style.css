@@ -200,12 +200,12 @@ nav {
    FOOTER
 ========================= */
 footer {
-  margin-top: 40px;
+  margin-top: 20px;
   background: #145aa0;
   color: white;
   text-align: center;
-  padding: 30px;
-  font-size: 14px;
+  padding: 20px;
+  font-size: 13px;
 }
 
 /* =========================
