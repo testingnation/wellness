@@ -47,37 +47,287 @@
 </section>
 
 <!-- DASHBOARD CONTENT -->
-<section class="assessment">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Risk Modeler V2 (Vanilla JS)</title>
+<style>
+body {
+  margin: 0;
+  font-family: monospace;
+  background: #020817;
+  color: #e2e8f0;
+}
+.container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: 100vh;
+}
+.panel {
+  padding: 12px;
+  border-bottom: 1px solid #1e293b;
+}
+.left {
+  background: #060d1a;
+  overflow-y: auto;
+}
+.right {
+  padding: 16px;
+  overflow-y: auto;
+}
+h3 {
+  font-size: 12px;
+  color: #64748b;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 6px;
+}
+label {
+  font-size: 11px;
+  display: block;
+  margin-top: 10px;
+  color: #94a3b8;
+}
+input, select, textarea {
+  width: 100%;
+  background: #0b1120;
+  color: #e2e8f0;
+  border: 1px solid #1e293b;
+  padding: 6px;
+  font-family: monospace;
+}
+button {
+  margin-top: 10px;
+  padding: 6px;
+  cursor: pointer;
+}
+.bar {
+  height: 6px;
+  background: #1e293b;
+  margin-bottom: 6px;
+}
+.fill {
+  height: 6px;
+}
+.flag {
+  padding: 6px;
+  margin: 6px 0;
+  border: 1px solid #334155;
+  background: #0b1120;
+  font-size: 11px;
+}
+.riskBox {
+  padding: 12px;
+  border: 1px solid #1e293b;
+  margin-bottom: 12px;
+}
+.small {
+  font-size: 11px;
+  color: #94a3b8;
+}
+</style>
+</head>
 
-  <h2>Dashboard Overview</h2>
+<body>
 
-  <div class="dashboard-grid">
+<div class="container">
 
-    <div class="card">
-      <h3>Total Assessments</h3>
-      <p id="total">--</p>
-    </div>
+<!-- LEFT PANEL -->
+<div class="left">
 
-    <div class="card">
-      <h3>Average Score</h3>
-      <p id="average">--</p>
-    </div>
+<div class="panel">
+<h3>Core Scenario</h3>
 
-    <div class="card">
-      <h3>Last Score</h3>
-      <p id="last">--</p>
-    </div>
+<label>Is Returning?</label>
+<select id="isReturning">
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</select>
 
-    <div class="card">
-      <h3>Status</h3>
-      <p id="status">--</p>
-    </div>
+<label>Return Date</label>
+<input type="date" id="returnDate" />
 
-  </div>
+<label>Air Travel</label>
+<select id="airTravel">
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</select>
 
-  <button onclick="logout()" class="print-btn">Logout</button>
+<label>Direct Routing</label>
+<select id="directRouting">
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</select>
 
-</section>
+<label>Entry Region</label>
+<select id="entryRegion">
+  <option value="chicago">Chicago</option>
+  <option value="other_il">Other IL</option>
+  <option value="external">External</option>
+</select>
+
+</div>
+
+<div class="panel">
+<h3>System State</h3>
+
+<label>System Stability</label>
+<select id="systemStability">
+  <option>Stable</option>
+  <option>Degraded</option>
+  <option>Volatile</option>
+  <option>Fragmented</option>
+</select>
+
+<label>Interaction Intensity</label>
+<select id="interactionIntensity">
+  <option>None</option>
+  <option>Sporadic</option>
+  <option>Active</option>
+  <option>Escalating</option>
+</select>
+</div>
+
+<button onclick="runModel()">Run Model</button>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right">
+
+<div class="riskBox" id="summary"></div>
+<div id="outcomes"></div>
+<div id="flags"></div>
+
+</div>
+
+</div>
+
+<script>
+// ---------------- CONSTANTS ----------------
+const OUTCOME_BUCKETS = [
+{ id:"null", label:"No Interaction", color:"#22c55e" },
+{ id:"passive", label:"Passive", color:"#84cc16" },
+{ id:"lowcontact", label:"Low Contact", color:"#eab308" },
+{ id:"disruption", label:"Disruption", color:"#f97316" },
+{ id:"sustained", label:"Sustained", color:"#ef4444" },
+{ id:"severe", label:"Severe", color:"#b91c1c" },
+{ id:"wrongful", label:"Wrongful", color:"#7f1d1d" },
+];
+
+function daysFromToday(d){
+return Math.round((new Date(d)-new Date())/86400000);
+}
+
+// ---------------- CORE MODEL ----------------
+function computeOutcomes(p){
+let L = {
+null:1, passive:1, lowcontact:1,
+disruption:1, sustained:1, severe:1, wrongful:1
+};
+
+if(!p.isReturning){
+L.null*=3; L.disruption*=0.3; L.sustained*=0.2;
+}else{
+let days = daysFromToday(p.returnDate);
+if(days<=90){
+L.disruption*=1.2; L.sustained*=1.3;
+}
+}
+
+if(p.airTravel){
+if(p.directRouting){
+L.disruption*=1.3; L.sustained*=1.2;
+}
+}
+
+if(p.entryRegion==="chicago"){
+L.disruption*=1.2; L.sustained*=1.2;
+}
+
+const prior = {
+null:0.3, passive:0.25, lowcontact:0.18,
+disruption:0.12, sustained:0.08, severe:0.05, wrongful:0.02
+};
+
+let out = {};
+let total = 0;
+
+for(let k in L){
+out[k] = L[k]*prior[k];
+total += out[k];
+}
+
+for(let k in out){
+out[k] = out[k]/total;
+}
+
+return out;
+}
+
+function computeFlags(p){
+let flags=[];
+
+if(p.airTravel && p.directRouting){
+flags.push("PNR signal active (high exposure window)");
+}
+if(p.entryRegion==="chicago"){
+flags.push("Chicago operational footprint detected");
+}
+if(p.systemStability==="Volatile"){
+flags.push("System volatility increasing uncertainty");
+}
+
+return flags;
+}
+
+// ---------------- RENDER ----------------
+function runModel(){
+
+let p = {
+isReturning: document.getElementById("isReturning").value==="true",
+returnDate: document.getElementById("returnDate").value,
+airTravel: document.getElementById("airTravel").value==="true",
+directRouting: document.getElementById("directRouting").value==="true",
+entryRegion: document.getElementById("entryRegion").value,
+systemStability: document.getElementById("systemStability").value,
+interactionIntensity: document.getElementById("interactionIntensity").value
+};
+
+let outcomes = computeOutcomes(p);
+let flags = computeFlags(p);
+
+// summary
+let top = Object.entries(outcomes).sort((a,b)=>b[1]-a[1])[0];
+
+document.getElementById("summary").innerHTML =
+"<b>Top Outcome:</b> " + top[0] +
+"<br><b>Probability:</b> " + (top[1]*100).toFixed(1) + "%";
+
+// outcomes
+let html="";
+OUTCOME_BUCKETS.forEach(b=>{
+let v = (outcomes[b.id]||0)*100;
+html += `
+<div>
+<div>${b.label} - ${v.toFixed(1)}%</div>
+<div class="bar"><div class="fill" style="width:${v}%;background:${b.color}"></div></div>
+</div>`;
+});
+document.getElementById("outcomes").innerHTML = html;
+
+// flags
+document.getElementById("flags").innerHTML =
+"<h3>Flags</h3>" +
+flags.map(f=>`<div class="flag">${f}</div>`).join("");
+}
+
+// initial run
+runModel();
+</script>
+
+</body>
+</html>
 
 <!-- FOOTER -->
 <footer>
