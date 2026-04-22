@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | TestingNation Wellness</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- HERO / VIDEO BANNER -->
+<section class="hero">
+
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="video/banner.mp4" type="video/mp4">
+  </video>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="home-icon">⌂</a>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+    </div>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div id="menu">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Tools</a></li>
+      <li><a href="#">Connect</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO TEXT -->
+  <div class="hero-content">
+    <h1>Private Dashboard</h1>
+    <p>Performance Metrics & Insights</p>
+  </div>
+
+</section>
+
+<!-- DASHBOARD CONTENT -->
+<section class="assessment">
+
+  <h2>Dashboard Overview</h2>
+
+  <div class="dashboard-grid">
+
+    <div class="card">
+      <h3>Total Assessments</h3>
+      <p id="total">--</p>
+    </div>
+
+    <div class="card">
+      <h3>Average Score</h3>
+      <p id="average">--</p>
+    </div>
+
+    <div class="card">
+      <h3>Last Score</h3>
+      <p id="last">--</p>
+    </div>
+
+    <div class="card">
+      <h3>Status</h3>
+      <p id="status">--</p>
+    </div>
+
+  </div>
+
+  <button onclick="logout()" class="print-btn">Logout</button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 TestingNation Wellness</p>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+
+// SAMPLE DATA (replace later with real logic)
+const sampleScores = [12, 18, 9, 22];
+
+function loadDashboard() {
+  const total = sampleScores.length;
+  const avg = Math.round(sampleScores.reduce((a,b)=>a+b,0)/total);
+  const last = sampleScores[sampleScores.length - 1];
+
+  document.getElementById("total").textContent = total;
+  document.getElementById("average").textContent = avg;
+  document.getElementById("last").textContent = last;
+
+  document.getElementById("status").textContent =
+    last >= 20 ? "High" :
+    last >= 10 ? "Moderate" : "Low";
+}
+
+function logout() {
+  sessionStorage.removeItem("auth");
+  window.location.href = "login.html";
+}
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>
